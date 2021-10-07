@@ -47,21 +47,17 @@ function searchFromIndex(i, arr, evenOrOdd){
       - matches req of evenOrOdd (true: even,...)
       - is also in the wrong index Parity-wise
     */
-    let found = false;
-    let idx = i + 1;
+    i = i + 1;
     
-    while(idx < arr.length && !found){
-        
-        if(evenOrOdd && idx % 2 === 1 && arr[idx] % 2 === 0){
-            found = true;
-            return idx;
+    while(i < arr.length){
+        if(evenOrOdd && i % 2 === 1 && arr[i] % 2 === 0){
+            return i;
         }
-        if(!evenOrOdd && idx % 2 === 0 && arr[idx] % 2 === 1){
-            found = true;
-            return idx;
+        if(!evenOrOdd && i % 2 === 0 && arr[i] % 2 === 1){
+            return i;
         }
         
-        idx++;
+        i++;
     }
 }
 
