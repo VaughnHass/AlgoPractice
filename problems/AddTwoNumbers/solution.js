@@ -10,20 +10,43 @@ var addTwoNumbersHelper = function(l1, l2) {
         l2Value = l2.val;
     }
     
-    l1.val = l1Value + l2Value;
+    let sum = l1Value + l2Value;
      
-    if(l1.val >= 10){
-        l1.val -= 10;
-        l1.next.val += 1;
+    if(sum >= 10){
+        l1.val = sum - 10;
+        if(!l1.next){
+            l1.next = {val: 1, next: null};
+        } else {
+            l1.next.val += 1;
+        }
+    } else {
+        if(!l1){
+            l1 = {val: sum, next: null};
+        } else {
+            l1.val = sum;
+        }
     }
      
-    //check if both lists don't have nexts
-    if(!l1.next && !l2.next){
+    //check if both lists are null
+    if(!l1 && !l2){
         return;
     }
     
-    let l1Next = l1.next || null;
-    let l2Next = l2.next || null;
+    //sort out nexts
+    let l1Next = null;
+    let l2Next = null;
+    
+    if(l1 && l1.next){
+        l1Next = l1.next;
+    }
+    
+    if(l2 && l2.next){
+        l2Next = l2.next;
+    }
+    
+    if(!l1Next && !l2Next){
+        return;
+    }
     
     addTwoNumbersHelper(l1Next, l2Next);
 };
@@ -64,7 +87,11 @@ var addTwoNumbers = function(l1, l2) {
      
     if(l1.val >= 10){
         l1.val -= 10;
-        l1.next.val += 1;
+        if(!l1.next){
+            l1.next = {val: 1, next: null};
+        } else {
+            l1.next.val += 1;
+        }
     }
      
     //check if both lists don't have nexts
@@ -84,7 +111,7 @@ var addTwoNumbers = function(l1, l2) {
         l2Next = l2.next;
     }
     
-    addTwoNumbersHelper(l1.next, l2.next);
+    addTwoNumbersHelper(l1Next, l2Next);
     
     return l1;
 };
