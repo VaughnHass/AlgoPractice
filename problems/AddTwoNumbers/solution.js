@@ -95,7 +95,7 @@ var addTwoNumbers = function(l1, l2) {
     }
      
     //check if both lists don't have nexts
-    if(l1.next == null && l2.next == null){
+    if(l1.next === null && l2.next === null){
         return l1;
     }
     
